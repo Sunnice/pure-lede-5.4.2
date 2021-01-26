@@ -15,3 +15,16 @@
 
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
+sed -i '$a src-git jerryk https://github.com/jerrykuku/openwrt-package' feeds.conf.default
+
+./scripts/feeds clean
+./scripts/feeds update -a
+./scripts/feeds install -a
+
+rm -rf feeds/packages/net/smartdns
+svn co https://github.com/Lienol/openwrt-packages/trunk/net/smartdns package/net/smartdns	
+
+rm -rf feeds/packages/net/https-dns-proxy
+svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
+
+svn co https://github.com/Lienol/openwrt-packages/trunk/utils/syncthing package/utils/syncthing
